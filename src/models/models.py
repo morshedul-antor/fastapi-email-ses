@@ -3,6 +3,7 @@ from models import BaseModel
 
 
 class ToDo(BaseModel):
-       __tablename__ = "todo"
-       title = Column(String(255))
-       task = Column(Text, nullable=True)
+    __tablename__ = "todo"
+    title = Column(String(255))
+    task = Column(Text, nullable=True)
+    email = Column(String(30), nullable=True)
