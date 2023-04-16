@@ -10,7 +10,7 @@ from exceptions import AppExceptionCase, AppException, app_exception_handler, ge
 import api.v1.routes
 from db import settings
 
-app = FastAPI(title='FastAPI Boilerplate')
+app = FastAPI(title='FastAPI Email')
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,10 +20,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.exception_handler(AppExceptionCase)
 def custom_app_exception_handler(request: Request, exc: AppException):
     print(exc)
     return app_exception_handler(request, exc)
+
 
 @app.exception_handler(RequestValidationError)
 def request_validation_exception_handler(request: Request, exc: RequestValidationError):
@@ -41,6 +43,7 @@ def request_validation_exception_handler(request: Request, exc: RequestValidatio
         ),
     )
 
+
 @app.exception_handler(ValidationError)
 def validation_exception_handler(request: Request, exc: ValidationError):
     print(exc)
@@ -56,11 +59,12 @@ def custom_generic_exception_handler(request: Request, exc: Exception):
 # Root API
 @app.get("/")
 async def root():
-       return {"message": "CRUD Application FastAPI"}
+    return {"message": "FastAPI Email!"}
 
 
 app.include_router(api.v1.routes.api_router, prefix=settings.API_V1_STR)
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.2", port=8000, reload=True, log_level="info")
+    uvicorn.run("main:app", host="127.0.0.2", port=8000,
+                reload=True, log_level="info")
