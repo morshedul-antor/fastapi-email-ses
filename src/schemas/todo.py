@@ -1,22 +1,23 @@
 from pydantic import BaseModel
 from typing import Optional
 
+
 class TodoBase(BaseModel):
-       title: str
-       task: Optional[str] = None
+    title: str
+    task: Optional[str] = None
+    email: Optional[str] = None
 
 
 class TodoIn(TodoBase):
-       pass
+    pass
 
 
 class TodoOut(TodoBase):
-       id: int
+    id: int
 
-       class Config:
-              orm_mode = True
+    class Config:
+        orm_mode = True
 
 
-class TodoUpdate(BaseModel):
-       title: str
-       task: Optional[str] = None
+class TodoUpdate(TodoBase):
+    pass
