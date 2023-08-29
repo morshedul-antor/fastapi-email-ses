@@ -29,7 +29,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    PROJECT_NAME: str = "FastAPI Email"
+    PROJECT_NAME: str = "FastAPI Email SES"
     SENTRY_DSN: Optional[HttpUrl] = None
 
     class Config:
