@@ -33,7 +33,3 @@ SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465
 SMTP_USERNAME = "itsantor25@gmail.com"
 SMTP_PASSWORD = "ybzvpkomfnpuwuyn"
-
-SENDGRID_API_KEY = ""
-
-
