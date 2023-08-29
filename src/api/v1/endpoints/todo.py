@@ -1,16 +1,19 @@
-from fastapi import APIRouter, Depends
-from schemas import  TodoIn, TodoOut, TodoUpdate
+from fastapi import APIRouter, Depends, HTTPException
+from schemas import TodoIn, TodoOut, TodoUpdate
 from exceptions.service_result import handle_result
 from sqlalchemy.orm import Session
 from db import get_db
 from typing import List
 from services import todo_service
+import boto3
 
 router = APIRouter()
 
+
 @router.get('/', response_model=List[TodoOut])
 def all_todo(skip: int = 0, limit: int = 10,  db: Session = Depends(get_db)):
-    all = todo_service.get_with_pagination(db=db, skip=skip, limit=limit, descending=True)
+    all = todo_service.get_with_pagination(
+        db=db, skip=skip, limit=limit, descending=True)
     return handle_result(all)
 
 
