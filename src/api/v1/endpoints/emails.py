@@ -13,7 +13,7 @@ def send_ses_email():
         <html>
             <body>
                 <h1>Congratulations</h1>
-                <p>Your registraion successfull at HEALTHx</p>
+                <p>You just received a mail through aws ses</p>
             </body>
         </html>
     """
