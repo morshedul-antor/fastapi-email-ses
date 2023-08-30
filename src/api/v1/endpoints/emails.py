@@ -6,27 +6,23 @@ router = APIRouter()
 
 @router.post('/email')
 def send_ses_email():
-    sender = "antor.morshedul@healthxbd.com"
+    sender = "antor.morshedul@healthxbd.com"  # verified domain
     recipient = "antor.morshedul@gmail.com"
-    subject = "This is a test email from ses"
+    subject = "Test email from SES"
     html_body = """
         <html>
-            <head>
-                <title>This is a test email</title>
-            </head>
             <body>
-                <h1>This is a test email</h1>
-                <p>This is the body of the email.</p>
+                <h1>Congratulations</h1>
+                <p>Your registraion successfull at HEALTHx</p>
             </body>
         </html>
     """
-    AWS_REGION = "ap-south-1"
+    AWS_REGION = "ap-southeast-1"
 
-    # Create a SES client
+    # SES client
     client = boto3.client("ses", region_name=AWS_REGION)
 
     try:
-        # Send the email
         response = client.send_email(
             Source=sender,
             Destination={"ToAddresses": [recipient]},
@@ -36,7 +32,6 @@ def send_ses_email():
             }
         )
 
-        # Check the response
         if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
             return {"status": "success", "message": "Email sent successfully"}
         else:
